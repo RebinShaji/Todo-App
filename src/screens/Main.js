@@ -44,11 +44,6 @@ const Main = () => {
     }
   };
 
-  const addDescriptiom = () => {
-    textInput;
-    setTextInput('');
-    };
-
   const saveTodoToUserDevice = async todos => {
     try {
       const stringifyTodos = JSON.stringify(todos);
@@ -97,10 +92,10 @@ const Main = () => {
     ]);
   };
 
-  const onPressItem = (item) => {
+  const onPressItem = (editItem) => {
     setisModalVisible(true);
-    setTextInput(item)
-    seteditItem(item)
+    setTextInput(textInput)
+    seteditItem(editItem)
   }
 
   const renderItem =({item, index}) => {
@@ -147,7 +142,7 @@ const Main = () => {
           <TextInput
             value={textInput}
             placeholder="Add Description...."
-            onChangeText={text => setTextInput(text)}
+            onChangeText={desctext => setTextInput(desctext)}
           />
         </View>
         {!todo?.completed && (
@@ -174,7 +169,7 @@ const Main = () => {
               />
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => onPressItem(editItem)}>
+        <TouchableOpacity onPress={() => onPressItem(todo.id)}>
           <View style={styles.actionIcon}>
           <Image
               source={require('../assets/icons/edit.png')}
@@ -217,23 +212,36 @@ const Main = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{padding: 20, paddingBottom: 100}}
         data={todos}
-        keyExtractor={(item) => item.id.toString()}
+        
         renderItem={({item}) => <ListItem todo={item} />}
         extraData={isRender}
       />
+      {/* <FlatList 
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={renderItem} 
+      extraData={isRender}/> */}
       <Modal
         animationType='fade'
         visible={isModalVisible}
         onRequestClose={() => setisModalVisible(false)}
       >
        <View style={styles.modalView}>
-        <Text style={styles.text}>Change Text</Text>
+        <Text style={styles.text}>Change Task</Text>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={(text) => setTextInput(text)}
+          //defaultValue={textInput}
+          editable={true}
+          multiline={false}
+          maxLength={20}
+        />
+        <Text style={styles.text}>Change Description</Text>
         <TextInput
           style={styles.textInput}
           onChangeText={(text) => setTextInput(text)}
           defaultValue={textInput}
           editable={true}
-          multiline={false}
+          multiline={true}
           maxLength={200}
         />
         <TouchableOpacity

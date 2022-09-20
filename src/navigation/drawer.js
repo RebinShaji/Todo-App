@@ -14,12 +14,14 @@ export default function DrawerNav() {
       screenOptions={{
         drawerPosition: 'left',
         headerShown: true,
+        swipeEdgeWidth: 1,
+        drawerActiveBackgroundColor: '#55BCF6',
+        drawerInactiveBackgroundColor: '#f5f5f5',
+        drawerActiveTintColor: 'white',
+        drawerInactiveTintColor: 'black'
       }}>
       <Drawer.Screen name="Splashscreen" component={Splashscreen} />
-      <Drawer.Screen name="Main" component={Main} />
-      
-
-  
+      <Drawer.Screen name="Main" component={Main} />  
     </Drawer.Navigator>
   );
 }

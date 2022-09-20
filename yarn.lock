@@ -5853,11 +5853,6 @@
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz"
   "version" "0.70.3"
 
-"react-native-ionicons@^4.6.5":
-  "integrity" "sha512-s2Ia7M5t609LE9LWygMj3ALVPUlKhK7R9XcMb67fP4EYJv0oLcwg5pc+8ftv9XXaUuTW/WgL3zJlBYxAvtvMJg=="
-  "resolved" "https://registry.npmjs.org/react-native-ionicons/-/react-native-ionicons-4.6.5.tgz"
-  "version" "4.6.5"
-
 "react-native-material-icons@^1.0.3":
   "integrity" "sha512-4DjKM2F5YJxX1TA8fv+8RTSkoNjc0mepDsNerEkUdn8z3zGfheKYW7nJdphCDd0ujnny7m4zzvLCZQ0CR+U3fQ=="
   "resolved" "https://registry.npmjs.org/react-native-material-icons/-/react-native-material-icons-1.0.3.tgz"

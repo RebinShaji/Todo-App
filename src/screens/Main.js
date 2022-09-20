@@ -20,7 +20,6 @@ const Main = () => {
   const [textInput, setTextInput] = React.useState('');
   const [isRender, setisRender] = React.useState(false);
   const [isModalVisible, setisModalVisible] = React.useState(false);
-  const [inputText, setinputText] = React.useState();
   const [editItem, seteditItem] = React.useState();
 
   React.useEffect(() => {
@@ -44,6 +43,11 @@ const Main = () => {
       setTextInput('');
     }
   };
+
+  const addDescriptiom = () => {
+    textInput;
+    setTextInput('');
+    };
 
   const saveTodoToUserDevice = async todos => {
     try {
@@ -95,7 +99,7 @@ const Main = () => {
 
   const onPressItem = (item) => {
     setisModalVisible(true);
-    setinputText(item.text)
+    setTextInput(item.text)
     seteditItem(item.id)
   }
 
@@ -113,7 +117,7 @@ const Main = () => {
   const handleEditItem = (editItem) => {
      const newData = todos.map(item => {
        if (item.id == editItem) {
-            item.text = inputText;
+            item.text = textInput;
             return item;
        }
         return item;
@@ -122,13 +126,14 @@ const Main = () => {
     setisRender(!isRender)
   }
 
-  const onPressSavEdit = () => {
+  const onPressSaveEdit = () => {
      handleEditItem(editItem);
      setisModalVisible(false);
   }
 
   const ListItem = ({todo}) => {
     return (
+      <TouchableOpacity onPress={addDescriptiom}>
       <View style={styles.listItem}>
         <View style={{flex: 1}}>
           <Text
@@ -140,6 +145,11 @@ const Main = () => {
             }}>
             {todo?.task}
           </Text>
+          <TextInput
+            value={textInput}
+            placeholder="Add Description...."
+            onChangeText={text => setTextInput(text)}
+          />
         </View>
         {!todo?.completed && (
           <TouchableOpacity onPress={() => markTodoComplete(todo.id)}>
@@ -165,7 +175,7 @@ const Main = () => {
               />
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => onPressItem(todo.id)}>
+        <TouchableOpacity onPress={() => onPressItem(editItem)}>
           <View style={styles.actionIcon}>
           <Image
               source={require('../assets/icons/edit.png')}
@@ -177,6 +187,7 @@ const Main = () => {
           </View>
         </TouchableOpacity>
       </View>
+      </TouchableOpacity>
     );
   };
   return (
@@ -208,8 +219,8 @@ const Main = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{padding: 20, paddingBottom: 100}}
         data={todos}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({renderItem}) => <ListItem todo={renderItem} />}
+        //keyExtractor={(item) => item.id.toString()}
+        renderItem={({item}) => <ListItem todo={item} />}
         extraData={isRender}
       />
       <Modal
@@ -221,20 +232,21 @@ const Main = () => {
         <Text style={styles.text}>Change Text</Text>
         <TextInput
           style={styles.textInput}
-          onChangeText={(text) => setinputText(text)}
-          defaultValue={inputText}
+          onChangeText={(text) => setTextInput(text)}
+          defaultValue={textInput}
           editable={true}
           multiline={false}
           maxLength={200}
         />
         <TouchableOpacity
-          onPress={() => onPressSavEdit()}
+          onPress={() => onPressSaveEdit()}
           style={styles.touchableSave}
         >
            <Text style={styles.text}>Save</Text>
         </TouchableOpacity>
        </View>
       </Modal>
+
       <View style={styles.footer}>
         <View style={styles.inputContainer}>
           <TextInput

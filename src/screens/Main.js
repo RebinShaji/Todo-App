@@ -99,8 +99,8 @@ const Main = () => {
 
   const onPressItem = (item) => {
     setisModalVisible(true);
-    setTextInput(item.text)
-    seteditItem(item.id)
+    setTextInput(item)
+    seteditItem(item)
   }
 
   const renderItem =({item, index}) => {
@@ -133,7 +133,6 @@ const Main = () => {
 
   const ListItem = ({todo}) => {
     return (
-      <TouchableOpacity onPress={addDescriptiom}>
       <View style={styles.listItem}>
         <View style={{flex: 1}}>
           <Text
@@ -187,7 +186,6 @@ const Main = () => {
           </View>
         </TouchableOpacity>
       </View>
-      </TouchableOpacity>
     );
   };
   return (
@@ -219,7 +217,7 @@ const Main = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{padding: 20, paddingBottom: 100}}
         data={todos}
-        //keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({item}) => <ListItem todo={item} />}
         extraData={isRender}
       />

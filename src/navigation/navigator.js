@@ -1,40 +1,26 @@
 import * as React from 'react';
-import Main from '../screens/Main'
-//import Splashscreen from '../screens/SplashScreen';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+// import Splashscreen from '../screens/SplashScreen'
+// import Main from '../screens/Main';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import DrawerNav from './drawer';
 
+const Stack = createNativeStackNavigator();
 
-const Drawer = createDrawerNavigator();
-
-function DrawerContent(props) {
+export default function Navigator() {
   return (
-    <DrawerContentScrollView style= {props}>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <NavigationContainer>
 
-      </View>
-      <View style={{ flex: 4 }}>
-        <DrawerItemList {...props} />
-      </View>
-    </DrawerContentScrollView>
-  );
-}
+    <Stack.Navigator
+      initialRouteName="Drawer"
+      useLegacyImplementation
+      screenOptions={{
+        drawerPosition: 'left',
+        headerShown: false,
+      }}>
+      <Stack.Screen name="DrawerNav" component={DrawerNav} />
+    </Stack.Navigator>
 
-export default function MyDrawer(){
-  return (  
-      <Drawer.Navigator screenOptions={{
-      headerShown: true,
-      drawerActiveBackgroundColor: '#6ACC00',
-      drawerInactiveBackgroundColor: '#f5f5f5',
-      drawerActiveTintColor: 'white',
-      drawerInactiveTintColor: 'black',
-      swipeEdgeWidth: 1,
-      }}
-      initialRouteName={'Main'}
-      drawerContent={(props) => <DrawerContent {...props} />}>
-      {/* <Drawer.Screen name="Splashscreen" component={Splashscreen} options={{
-        headerShown: true }} />   */}
-      <Drawer.Screen name="Main" component={Main} options={{
-        headerShown: true }} />
-      </Drawer.Navigator>
+    </NavigationContainer>
   );
 }

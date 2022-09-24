@@ -1,6 +1,7 @@
 # OSX
 #
 .DS_Store
+.buckconfig
 
 # Xcode
 #
@@ -43,6 +44,11 @@ buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
+.buckconfig
+/.vscode
+.ruby-version
+.flowconfig.
+/prettierrc.js
 
 # fastlane
 #

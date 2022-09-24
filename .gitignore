@@ -48,7 +48,6 @@ buck-out/
 /.vscode
 .ruby-version
 .flowconfig.
-/prettierrc.js
 
 # fastlane
 #
